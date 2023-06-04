@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+if [[ "$1" == 'init' ]] ; then
+  mkdir -p ~/.dfrab
+  mkdir -p ~/.dfrab/backups
+  mkdir -p ~/.dfrab/current
+  mkdir -p ~/.dfrab/
+  mkdir -p ~/.dfrab/var
+  mv
+fi
+
+if [[ "$1" == 'link' ]] ; then
+  ln -s 
+fi
+
+if [[ "$1" == 'update-nix-fallback' ]] ; then
+  /nix/nix/bin/update-nix-fallback
+fi
