@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+CURRENT_DFRAB_LOCATION=$(readlink $HOME/.dfrab/current)
+
+
 if [[ "$1" == 'init' ]] ; then
   if [[ ! -d ~/.dfrab/backups/start ]] ; then
     mkdir -p ~/.dfrab
@@ -53,3 +56,5 @@ if [[ "$1" == 'create-backup' ]] ; then
     exit 0
   fi
 fi
+
+if [[ "$1" == 'remove-backup'
