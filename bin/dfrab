@@ -74,3 +74,5 @@ if [[ "$1" == 'unlink' ]] ; then
   mv ~/.dfrab/current/$2 ~/$2
   exit 0
 fi
+
+exit 22
