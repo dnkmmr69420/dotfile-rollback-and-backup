@@ -44,8 +44,7 @@ if [[ "$1" == 'create-profile' ]] ; then
     exit 21
   fi
   if [[ ! -d ~/.dfrab/backups/$2 ]] ; then
-    mkdir ~/.dfrab/backups/$2
-    cp -r ~/.dfrab/current/* ~/.dfrab/backups/$2
+    cp -r $CURRENT_DFRAB_PROFILE ~/.dfrab/backups/$2
     ln -sf ~/.dfrab/backups/$2 ~/.dfrab/current
     exit 0
   fi
@@ -57,8 +56,7 @@ if [[ "$1" == 'create-backup' ]] ; then
     exit 21
   fi
   if [[ ! -d ~/.dfrab/backups/$2 ]] ; then
-    mkdir -p ~/.dfrab/backups/$2
-    cp -r ~/.dfrab/current/* ~/.dfrab/backups/$2
+    cp -r $CURRENT_DFARB_PROFILE ~/.dfrab/backups/$2
     exit 0
   fi
 fi
