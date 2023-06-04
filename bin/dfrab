@@ -80,6 +80,17 @@ if [[ "$1" == 'unlink' ]] ; then
   exit 0
 fi
 
+if [[ "$1" == 'list-backups' ]] ; then
+  ls ~/.dfarb/backups
+  exit 0
+fi
+
+if [[ "$1" == 'list-contents' ]] ; then
+  ls ~/.dfarb/current
+  exit 0
+fi
+  
+
 if [[ "$1" == 'help' ]] ; then
   echo "init: sets up dfrab"
   echo "link: makes symlink of the dotfile while dfrab manages it"
@@ -88,6 +99,8 @@ if [[ "$1" == 'help' ]] ; then
   echo "create-backup: creates a new profile but doesn't switch to it"
   echo "remove-backup: deletes a backup/profile"
   echo "unlink: removes link and moves dotfile and makes it like dfrab has never touched it"
+  echo "list-backups: lists backup directories"
+  echo "list-contents: lists the contents in ~/.dfarb/current"
   exit 0
 fi
 
