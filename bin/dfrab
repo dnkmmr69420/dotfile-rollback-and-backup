@@ -62,6 +62,7 @@ if [[ "$1" == 'remove-backup' ]] ; then
   if [[ -d $CURRENT_DFRAB_PROFILE ]] ; then
     echo "Can't delete because it is currently in use"
     exit 1
+  fi
   if [[ -d ~/.dfrab/backups/$2 ]] ; then
     rm -r ~/.dfrab/backups/$2
     exit 0
