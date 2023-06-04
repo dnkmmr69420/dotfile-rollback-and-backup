@@ -68,4 +68,8 @@ if [[ "$1" == 'remove-backup' ]] ; then
     exit 0
   fi
 fi
- 
+
+if [[ "$1" == 'unlink' ]] ; then
+  rm ~/$2
+  mv ~/.dfrab/current/$2 ~/$2
+fi
