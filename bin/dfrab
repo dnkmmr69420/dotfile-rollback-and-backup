@@ -7,7 +7,6 @@ if [[ "$1" == 'init' ]] ; then
   if [[ ! -d ~/.dfrab/backups/start ]] ; then
     mkdir -p ~/.dfrab
     mkdir -p ~/.dfrab/backups
-    mkdir -p ~/.dfrab/current
     mkdir -p ~/.dfrab/
     mkdir -p ~/.dfrab/backups/start
     ln -s ~/.dfrab/backups/start ~/.dfrab/current
