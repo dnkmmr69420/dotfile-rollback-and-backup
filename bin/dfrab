@@ -4,15 +4,20 @@ CURRENT_DFRAB_PROFILE=$(readlink ~/.dfrab/current)
 
 
 if [[ "$1" == 'init' ]] ; then
-  if [[ ! -d ~/.dfrab/backups/start ]] ; then
+  if [[ ! -f ~/.dfrab/config/inited.conf ]] ; then
     mkdir -p ~/.dfrab
     mkdir -p ~/.dfrab/backups
-    mkdir -p ~/.dfrab/
+    mkdir -p ~/.dfrab/config
     mkdir -p ~/.dfrab/backups/start
     ln -s ~/.dfrab/backups/start ~/.dfrab/current
     mv ~/.config ~/.dfrab/current/.config
     ln -s ~/.dfrab/current/.config ~/.config
+    touch ~/.dfrab/config/inited.conf
     exit 0
+  fi
+  if [[ -f ~/.dfrab/config/inited.conf ]] ; then
+    echo "dfrab has already been inited."
+    exit 1
   fi
 fi
 
@@ -36,7 +41,7 @@ if [[ "$1" == 'create-profile' ]] ; then
   fi
   if [[ ! -d ~/.dfrab/backups/$2 ]] ; then
     mkdir ~/.dfrab/backups/$2
-    mv ~/.dfrab/current/* ~/.dfrab/backups/$2
+    cp -r ~/.dfrab/current/* ~/.dfrab/backups/$2
     ln -sf ~/.dfrab/backups/$2 ~/.dfrab/current
     exit 0
   fi
@@ -75,6 +80,17 @@ if [[ "$1" == 'unlink' ]] ; then
   exit 0
 fi
 
-echo "No arguments have been provided."
+if [[ "$1" == 'help' ]] ; then
+  echo "init: sets up dfrab"
+  echo "link: makes symlink of the dotfile while dfrab manages it"
+  echo "switch-profile: switches to a different profile/backup"
+  echo "create-profile: makes a new profile and switches to it"
+  echo "create-backup: creates a new profile but doesn't switch to it"
+  echo "remove-backup: deletes a backup/profile"
+  echo "unlink: removes link and moves dotfile and makes it like dfrab has never touched it"
+  exit 0
+fi
+
+echo "No arguments have been provided. Type help for command help"
 
 exit 22
