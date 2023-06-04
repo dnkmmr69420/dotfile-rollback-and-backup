@@ -8,13 +8,19 @@ if [[ "$1" == 'init' ]] ; then
     mkdir -p ~/.dfrab/
     mkdir -p ~/.dfrab/var
     mkdir -p ~/.dfrab/backups/start
-    mv ~/
+    ln -s ~/.dfrab/backups/start ~/.dfrab/current
+    mv ~/.local ~/.dfrab/current
+    ln -s ~/.dfrab/current/.local ~/.local
+    mv ~/.config ~/.dfrab/current/.config
+    ln -s ~/.dfrab/current/.config ~/.config
+  fi
 fi
 
 if [[ "$1" == 'link' ]] ; then
-  ln -s 
+  mv ~/$2 ~/.dfrab/current
+  ln -s ~/.drab/$2 ~/
 fi
 
-if [[ "$1" == 'update-nix-fallback' ]] ; then
-  /nix/nix/bin/update-nix-fallback
+if [[ "$1" == 'switch-profile' ]] ; then
+  ln -sf ~/.dfrab/backups/$2 ~/.dfrab/current
 fi
