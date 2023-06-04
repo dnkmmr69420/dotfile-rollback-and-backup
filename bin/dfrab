@@ -9,11 +9,8 @@ if [[ "$1" == 'init' ]] ; then
     mkdir -p ~/.dfrab/backups
     mkdir -p ~/.dfrab/current
     mkdir -p ~/.dfrab/
-    mkdir -p ~/.dfrab/var
     mkdir -p ~/.dfrab/backups/start
     ln -s ~/.dfrab/backups/start ~/.dfrab/current
-    mv ~/.local ~/.dfrab/current
-    ln -s ~/.dfrab/current/.local ~/.local
     mv ~/.config ~/.dfrab/current/.config
     ln -s ~/.dfrab/current/.config ~/.config
     exit 0
