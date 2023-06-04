@@ -40,6 +40,7 @@ if [[ "$1" == 'create-profile' ]] ; then
     ln -sf ~/.dfrab/backups/$2 ~/.dfrab/current
     exit 0
   fi
+fi
     
 if [[ "$1" == 'create-backup' ]] ; then
   if [[ -d ~/.dfrab/backups/$2 ]]
