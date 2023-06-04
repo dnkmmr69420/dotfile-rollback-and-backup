@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CURRENT_DFRAB_LOCATION=$(readlink $HOME/.dfrab/current)
+CURRENT_DFRAB_PROFILE=$(readlink ~/.dfrab/current)
 
 
 if [[ "$1" == 'init' ]] ; then
@@ -57,4 +57,17 @@ if [[ "$1" == 'create-backup' ]] ; then
   fi
 fi
 
-if [[ "$1" == 'remove-backup'
+if [[ "$1" == 'remove-backup' ]] ; then
+  if [[ ! -d ~/.dfrab/backups/$2 ]] ; then
+    echo "$2 does not exist"
+    exit 21
+  fi
+  if [[ -d $CURRENT_DFRAB_PROFILE ]]
+    echo "Can't delete because it is currently in use"
+    exit 1
+  if [[ -d ~/.dfrab/backups/$2 ]] ; then
+    rm -r ~/.dfrab/backups/$2
+    exit 0
+  fi
+fi
+ 
