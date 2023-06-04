@@ -23,7 +23,7 @@ fi
 
 if [[ "$1" == 'link' ]] ; then
   mv ~/$2 ~/.dfrab/current
-  ln -s ~/.dfrab/$2 ~/$2
+  ln -s ~/.dfrab/current/$2 ~/$2
   exit 0
 fi
 
