@@ -19,7 +19,7 @@ fi
 
 if [[ "$1" == 'link' ]] ; then
   mv ~/$2 ~/.dfrab/current
-  ln -s ~/.drab/$2 ~/
+  ln -s ~/.drab/$2 ~/$2
 fi
 
 if [[ "$1" == 'switch-profile' ]] ; then
