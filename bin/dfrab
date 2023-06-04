@@ -24,7 +24,7 @@ if [[ "$1" == 'link' ]] ; then
 fi
 
 if [[ "$1" == 'switch-profile' ]] ; then
-  if [[ ! -d ~/.dfrab/backups/$2 ]]
+  if [[ ! -d ~/.dfrab/backups/$2 ]] ; then
     ln -sf ~/.dfrab/backups/$2 ~/.dfrab/current
     exit 0
   fi
