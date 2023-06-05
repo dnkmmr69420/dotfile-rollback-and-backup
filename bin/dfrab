@@ -130,6 +130,7 @@ if [[ "$1" == 'help' ]] ; then
   echo "unlink: removes link and moves dotfile and makes it like dfrab has never touched it"
   echo "list-backups: lists backup directories"
   echo "list-contents: lists the contents in ~/.dfarb/current"
+  echo "what-profile: prints the current profile/backup location"
   exit 0
 fi
 
