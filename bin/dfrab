@@ -42,7 +42,6 @@ if [[ "$1" == 'link' ]] ; then
     echo "$2 does not exist. Are you sure you are in the same directory where the file/directory you are linking?"
     exit 2
   fi
-  echo "Linking $2..."
   mv $2 ~/.dfrab/current
   ln -s ~/.dfrab/current/$2 $2
   echo "Linked $2"
@@ -59,7 +58,6 @@ if [[ "$1" == 'switch-profile' ]] ; then
     exit 1
   fi
   if [[ -d ~/.dfrab/backups/$2 ]] ; then
-    echo "Switching profiles..."
     rm -f ~/.dfrab/current
     ln -sf ~/.dfrab/backups/$2 ~/.dfrab/current
     echo "Switched to $2"
@@ -81,7 +79,6 @@ if [[ "$1" == 'create-profile' ]] ; then
     exit 1
   fi
   if [[ ! -d ~/.dfrab/backups/$2 ]] ; then
-    echo "Creating profile $2..."
     cp -r $CURRENT_DFRAB_PROFILE ~/.dfrab/backups/$2
     rm -f ~/.dfrab/current
     ln -sf ~/.dfrab/backups/$2 ~/.dfrab/current
@@ -104,7 +101,6 @@ if [[ "$1" == 'create-backup' ]] ; then
     exit 1
   fi
   if [[ ! -d ~/.dfrab/backups/$2 ]] ; then
-    echo "Creating backup $2..."
     cp -r $CURRENT_DFRAB_PROFILE ~/.dfrab/backups/$2
     echo "Backup $2 created"
     exit 0
@@ -129,7 +125,6 @@ if [[ "$1" == 'remove-backup' ]] ; then
     exit 1
   fi
   if [[ -d ~/.dfrab/backups/$2 ]] ; then
-    echo "Removing backup $2..."
     rm -r ~/.dfrab/backups/$2
     echo "Backup $2 removed"
     exit 0
@@ -154,7 +149,6 @@ if [[ "$1" == 'unlink' ]] ; then
     exit 2
   fi
   if [[ -L "$2" ]] ; then
-    echo "Unlinking $2..."
     rm $2
     mv ~/.dfrab/current/$2 $2
     echo "Finished unlinking $2"
