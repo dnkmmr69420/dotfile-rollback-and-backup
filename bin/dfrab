@@ -98,7 +98,7 @@ if [[ "$1" == 'unlink' ]] ; then
   fi
   if [[ ! -L "$2" ]] ; then
     echo "This is not a link"
-    exit 0
+    exit 1
   fi
 fi
 
