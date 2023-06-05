@@ -170,6 +170,42 @@ if [[ "$1" == 'unlink' ]] ; then
   fi
 fi
 
+if [[ "$1" == 'profile-copy' ]] ; then
+  if [[ ! -d ~/.dfrab/backups/$2 ]] ; then
+    echo "Cannot copy non existant directory"
+    exit 2
+  fi
+  if [[ -d ~/.dfrab/backups/$3 ]] ; then
+    echo "$3 already exists, use a different name."
+    exit 21
+  fi
+  if [[ "$2" == '.' ]] ; then
+    echo "Fatal: cannot copy ."
+    exit 1
+  fi
+  if [[ "$2" == '..' ]] ; then
+    echo "Fatal: cannot copy .."
+    exit 1
+  fi
+  if [[ "$3" == '.' ]] ; then
+    echo "Fatal: cannot name copy ."
+    exit 1
+  fi
+  if [[ "$3" == '..' ]] ; then
+    echo "Fatal: cannot name copy .."
+    exit 1
+  fi
+  if [[ ! -d ~/.dfrab/backups/$3 ]] ; then
+    cp -r ~/.dfrab/backups/$2 ~/.dfrab/backups/$3
+    if [[ ! -d ~/.dfrab/backups/$3 ]] ; then
+      echo "Failed to create a copy $3"
+      exit 2
+    fi
+    echo "Copy of $2 called $3 created"
+    exit 0
+  fi
+fi
+
 if [[ "$1" == 'list-backups' ]] ; then
   ls ~/.dfrab/backups
   exit 0
