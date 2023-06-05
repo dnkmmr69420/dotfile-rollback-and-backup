@@ -96,7 +96,7 @@ if [[ "$1" == 'unlink' ]] ; then
     mv ~/.dfrab/current/$2 $2
     exit 0
   fi
-  if [[ ! L "$2" ]] ; then
+  if [[ ! -L "$2" ]] ; then
     echo "This is not a link"
     exit 0
   fi
