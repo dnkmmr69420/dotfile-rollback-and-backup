@@ -42,10 +42,12 @@ if [[ "$1" == 'link' ]] ; then
     echo "$2 does not exist. Are you sure you are in the same directory where the file/directory you are linking?"
     exit 2
   fi
-  mv $2 ~/.dfrab/current
-  ln -s ~/.dfrab/current/$2 $2
-  echo "Linked $2"
-  exit 0
+  if [[ ! -L "$2" ]] ; then
+    mv $2 ~/.dfrab/current
+    ln -s ~/.dfrab/current/$2 $2
+    echo "Linked $2"
+    exit 0
+  fi
 fi
 
 if [[ "$1" == 'switch-profile' ]] ; then
@@ -80,6 +82,10 @@ if [[ "$1" == 'create-profile' ]] ; then
   fi
   if [[ ! -d ~/.dfrab/backups/$2 ]] ; then
     cp -r $CURRENT_DFRAB_PROFILE ~/.dfrab/backups/$2
+    if [[ ! -d ~/.dfrab/backups/$2 ]] ; then
+      echo "Failed to create and switch to a new profile"
+      exit 2
+    fi
     rm -f ~/.dfrab/current
     ln -sf ~/.dfrab/backups/$2 ~/.dfrab/current
     echo "$2 Profile created"
@@ -102,6 +108,10 @@ if [[ "$1" == 'create-backup' ]] ; then
   fi
   if [[ ! -d ~/.dfrab/backups/$2 ]] ; then
     cp -r $CURRENT_DFRAB_PROFILE ~/.dfrab/backups/$2
+    if [[ ! -d ~/.dfrab/backups/$2 ]] ; then
+      echo "Failed to create a backup of $2"
+      exit 2
+    fi
     echo "Backup $2 created"
     exit 0
   fi
