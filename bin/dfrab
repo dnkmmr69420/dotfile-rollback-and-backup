@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 CURRENT_DFRAB_PROFILE=$(readlink ~/.dfrab/current)
 
 
