@@ -24,8 +24,12 @@ if [[ "$1" == 'link' ]] ; then
     echo "Fatal: unable to link .dfrab"
     exit 1
   fi
+  if [[ -L "$2" ]]; then
+    echo "dfrab can't link symlinks"
+    exit 1
+  fi
   mv ~/$2 ~/.dfrab/current
-  ln -s ~/.dfrab/current/$2 ~/$2
+  ln -s ~/.dfrab/current/$2 $2
   exit 0
 fi
 
@@ -54,7 +58,7 @@ if [[ "$1" == 'create-backup' ]] ; then
     exit 21
   fi
   if [[ ! -d ~/.dfrab/backups/$2 ]] ; then
-    cp -r $CURRENT_DFARB_PROFILE ~/.dfrab/backups/$2
+    cp -r $CURRENT_DFRAB_PROFILE ~/.dfrab/backups/$2
     exit 0
   fi
 fi
@@ -75,13 +79,23 @@ if [[ "$1" == 'remove-backup' ]] ; then
 fi
 
 if [[ "$1" == 'unlink' ]] ; then
-  rm ~/$2
-  mv ~/.dfrab/current/$2 ~/$2
-  exit 0
+  if [[ ! -e ~/.dfrab/current/$2 ]] ; then
+    echo "Can't unlink non existing file"
+    exit 1
+  fi
+  if [[ -L "$2" ]] ; then
+    rm ~/$2
+    mv ~/.dfrab/current/$2 $2
+    exit 0
+  fi
+  if [[ ! L "$2" ]] ; then
+    echo "This is not a link"
+    exit 0
+  fi
 fi
 
 if [[ "$1" == 'list-backups' ]] ; then
-  ls ~/.dfarb/backups
+  ls ~/.dfrab/backups
   exit 0
 fi
 
@@ -104,6 +118,6 @@ if [[ "$1" == 'help' ]] ; then
   exit 0
 fi
 
-echo "No arguments have been provided. Type help for command help"
+echo "No arguments have been provided or the arguments are incorrect. Type help for command help"
 
 exit 22
