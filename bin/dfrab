@@ -110,6 +110,14 @@ if [[ "$1" == 'remove-backup' ]] ; then
     echo "Can't delete because it is currently in use"
     exit 1
   fi
+  if [[ "$2" == '.' ]] ; then
+    echo "Fatal: cannott remove ."
+    exit 1
+  fi
+  if [[ "$2" == '..' ]] ; then
+    echo "Fatal: cannot remove .."
+    exit 1
+  fi
   if [[ -d ~/.dfrab/backups/$2 ]] ; then
     rm -r ~/.dfrab/backups/$2
     exit 0
