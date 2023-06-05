@@ -100,7 +100,7 @@ if [[ "$1" == 'list-backups' ]] ; then
 fi
 
 if [[ "$1" == 'list-contents' ]] ; then
-  ls ~/.dfarb/current
+  ls -a ~/.dfarb/current
   exit 0
 fi
   
