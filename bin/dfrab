@@ -113,6 +113,11 @@ if [[ "$1" == 'list-contents' ]] ; then
   ls -a ~/.dfrab/current
   exit 0
 fi
+
+if [[ "$1" == 'what-profile' ]] ; then
+  basename $CURRENT_DFRAB_PROFILE
+  exit 0
+fi
   
 
 if [[ "$1" == 'help' ]] ; then
