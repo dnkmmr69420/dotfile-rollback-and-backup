@@ -28,6 +28,10 @@ if [[ "$1" == 'link' ]] ; then
     echo "dfrab can't link symlinks"
     exit 1
   fi
+  if [[ ! -e "$2" ]] ; then
+    echo "$2 does not exist. Are you sure you are in the same directory where the file/directory you are linking?"
+    exit 2
+  fi
   mv $2 ~/.dfrab/current
   ln -s ~/.dfrab/current/$2 $2
   exit 0
@@ -82,6 +86,10 @@ if [[ "$1" == 'unlink' ]] ; then
   if [[ ! -e ~/.dfrab/current/$2 ]] ; then
     echo "Can't unlink non existing file"
     exit 1
+  fi
+  if [[ ! -e "$2" ]] ; then
+    echo "$2 does not exist. Are you sure you are in the same directory where the file/directory you are linking?"
+    exit 2
   fi
   if [[ -L "$2" ]] ; then
     rm $2
