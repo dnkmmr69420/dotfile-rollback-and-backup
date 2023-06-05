@@ -46,6 +46,14 @@ if [[ "$1" == 'link' ]] ; then
 fi
 
 if [[ "$1" == 'switch-profile' ]] ; then
+  if [[ "$2" == '.' ]] ; then
+    echo "Fatal: cannot switch to ."
+    exit 1
+  fi
+  if [[ "$2" == '..' ]] ; then
+    echo "Fatal: cannot switch to .."
+    exit 1
+  fi
   if [[ -d ~/.dfrab/backups/$2 ]] ; then
     rm -f ~/.dfrab/current
     ln -sf ~/.dfrab/backups/$2 ~/.dfrab/current
