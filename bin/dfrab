@@ -5,12 +5,14 @@ CURRENT_DFRAB_PROFILE=$(readlink ~/.dfrab/current)
 
 if [[ "$1" == 'init' ]] ; then
   if [[ ! -f ~/.dfrab/config/inited.conf ]] ; then
+    echo "Initing..."
     mkdir -p ~/.dfrab
     mkdir -p ~/.dfrab/backups
     mkdir -p ~/.dfrab/config
     mkdir -p ~/.dfrab/backups/start
     ln -s ~/.dfrab/backups/start ~/.dfrab/current
     touch ~/.dfrab/config/inited.conf
+    echo "Init complete"
     exit 0
   fi
   if [[ -f ~/.dfrab/config/inited.conf ]] ; then
@@ -40,8 +42,10 @@ if [[ "$1" == 'link' ]] ; then
     echo "$2 does not exist. Are you sure you are in the same directory where the file/directory you are linking?"
     exit 2
   fi
+  echo "Linking $2..."
   mv $2 ~/.dfrab/current
   ln -s ~/.dfrab/current/$2 $2
+  echo "Linked $2"
   exit 0
 fi
 
@@ -55,8 +59,10 @@ if [[ "$1" == 'switch-profile' ]] ; then
     exit 1
   fi
   if [[ -d ~/.dfrab/backups/$2 ]] ; then
+    echo "Switching profiles..."
     rm -f ~/.dfrab/current
     ln -sf ~/.dfrab/backups/$2 ~/.dfrab/current
+    echo "Switched to $2"
     exit 0
   fi
 fi
@@ -75,9 +81,11 @@ if [[ "$1" == 'create-profile' ]] ; then
     exit 1
   fi
   if [[ ! -d ~/.dfrab/backups/$2 ]] ; then
+    echo "Creating profile..."
     cp -r $CURRENT_DFRAB_PROFILE ~/.dfrab/backups/$2
     rm -f ~/.dfrab/current
     ln -sf ~/.dfrab/backups/$2 ~/.dfrab/current
+    echo "Profile created"
     exit 0
   fi
 fi
@@ -96,7 +104,9 @@ if [[ "$1" == 'create-backup' ]] ; then
     exit 1
   fi
   if [[ ! -d ~/.dfrab/backups/$2 ]] ; then
+    echo "Creating backup..."
     cp -r $CURRENT_DFRAB_PROFILE ~/.dfrab/backups/$2
+    echo "Backup created"
     exit 0
   fi
 fi
@@ -119,7 +129,9 @@ if [[ "$1" == 'remove-backup' ]] ; then
     exit 1
   fi
   if [[ -d ~/.dfrab/backups/$2 ]] ; then
+    echo "Removing backup..."
     rm -r ~/.dfrab/backups/$2
+    echo "Backup removed"
     exit 0
   fi
 fi
@@ -142,8 +154,10 @@ if [[ "$1" == 'unlink' ]] ; then
     exit 2
   fi
   if [[ -L "$2" ]] ; then
+    echo "Unlinking..."
     rm $2
     mv ~/.dfrab/current/$2 $2
+    echo "Finished unlinking"
     exit 0
   fi
   if [[ ! -L "$2" ]] ; then
