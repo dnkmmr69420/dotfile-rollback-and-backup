@@ -28,7 +28,7 @@ if [[ "$1" == 'link' ]] ; then
     echo "dfrab can't link symlinks"
     exit 1
   fi
-  mv ~/$2 ~/.dfrab/current
+  mv $2 ~/.dfrab/current
   ln -s ~/.dfrab/current/$2 $2
   exit 0
 fi
@@ -84,7 +84,7 @@ if [[ "$1" == 'unlink' ]] ; then
     exit 1
   fi
   if [[ -L "$2" ]] ; then
-    rm ~/$2
+    rm $2
     mv ~/.dfrab/current/$2 $2
     exit 0
   fi
