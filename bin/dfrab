@@ -274,6 +274,7 @@ if [[ "$1" == 'help' ]] ; then
   echo "list-contents: lists the contents in ~/.dfarb/current"
   echo "what-profile: prints the current profile/backup location"
   echo "profile-copy: coppies any profile you choose"
+  echo "rename-profile: renames profile/backup of your choice"
   exit 0
 fi
 
