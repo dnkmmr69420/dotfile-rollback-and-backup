@@ -274,6 +274,33 @@ if [[ "$1" == 'rename-profile' ]] ; then
     exit 0
   fi
 fi
+
+if [[ "$1" == 'archive-current' ]] ; then
+   tar -czvf $2.tar.gz -C $CURRENT_DFRAB_PROFILE .
+   if [[ ! -e "$2" ]] ; then
+    echo "Archiving failed"
+    exit 2
+   fi
+   echo "Finnished archiving"
+   exit 0
+fi
+
+if [[ "$1" == 'archive' ]] ; then
+  if [[ -d ~/.dfrab/backups/$2 ]] ; then
+      if [[ ! -e "$3" ]] ; then
+      tar -czvf $3.tar.gz ~/.dfrab/backups/$2 .
+      if [[ ! -f "$3" ]] ; then
+        echo "Archiving failed"
+        exit 2
+      fi
+      echo "Archived $2 and named it $3"
+      exit 0
+    fi
+  fi
+    echo "profile $2 does not exist"
+    exit 2
+fi
+ 
   
 
 if [[ "$1" == 'list-backups' ]] ; then
