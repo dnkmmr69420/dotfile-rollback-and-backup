@@ -20,6 +20,10 @@ if [[ "$1" == 'init' ]] ; then
     exit 1
   fi
 fi
+if [[ ! -f ~/.dfrab/config/inited.conf ]] ; then
+  echo "dfrab has not been inited yet. Type \"dfran init\" to init dfrab"
+  exit 1
+fi
 
 if [[ "$1" == 'link' ]] ; then
   if [[ "$2" == '.' ]] ; then
