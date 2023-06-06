@@ -345,6 +345,7 @@ if [[ "$1" == 'import-archive' ]] ; then
   if [[ "$3" == '..' ]] ; then
     echo "Fatal: cannot name profile .."
     exit 1
+  fi
   if [[ ! -f "$2" ]] ; then
     echo "Unable to import $2, it does not exist"
     exit 1
