@@ -15,7 +15,7 @@ mkdir -p ~/.local/bin ; rm -f ~/.local/bin/dfrab ; wget -P ~/.local/bin https://
 
 ### System wide install
 
-Installs for all users. Requires root to install but doesn't require root to use dfrab
+Installs for all users. Requires root to install but doesn't require root to use dfrab. Each user still needs to type `dfrab init` to get started with dfrab.
 
 ```bash
 sudo rm -f /usr/local/bin/dfrab ; sudo wget -P /usr/local/bin https://raw.githubusercontent.com/dnkmmr69420/dotfile-rollback-and-backup/main/bin/dfrab ; sudo chmod a+x /usr/local/bin/dfrab
