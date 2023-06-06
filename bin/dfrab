@@ -37,6 +37,11 @@ if [[ "$1" == 'help' ]] ; then
   exit 0
 fi
 
+if [[ "$1" == 'version' ]] ; then
+  echo "dfrab version: 0.1"
+  exit 0
+fi
+
 if [[ ! -f ~/.dfrab/config/inited.conf ]] ; then
   echo "dfrab has not been inited yet. Type \"dfran init\" to init dfrab. Type \"dfrab help\" for command help with dfrab."
   exit 1
