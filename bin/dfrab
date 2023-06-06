@@ -286,18 +286,21 @@ if [[ "$1" == 'archive-current' ]] ; then
 fi
 
 if [[ "$1" == 'archive' ]] ; then
-  if [[ -d ~/.dfrab/backups/$2 ]] ; then
-      if [[ ! -e "$3" ]] ; then
-        tar -czvf $3.tar.gz ~/.dfrab/backups/$2 .
-        if [[ ! -f "$3" ]] ; then
-          echo "Archiving failed"
-          exit 2
-        fi
-      echo "Archived $2 and named it $3"
-      exit 0
-  fi
+  if [[ ! -d ~/.dfrab/backups/$2 ]] ; then
     echo "profile $2 does not exist"
     exit 2
+  fi
+  if [[ -e "$3" ]] ; then
+    echo "Can't name archive $3, it already exists"
+    exit 2
+  fi
+  tar -czvf $3.tar.gz ~/.dfrab/backups/$2 .
+  if [[ ! -f "$3" ]] ; then
+    echo "Archiving failed"
+    exit 2
+  fi
+  echo "Archived $2 and named it $3"
+  exit 0
 fi
  
   
