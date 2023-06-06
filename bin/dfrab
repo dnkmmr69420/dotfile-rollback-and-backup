@@ -35,6 +35,7 @@ if [[ "$1" == 'help' ]] ; then
   echo "profile-copy: coppies any profile you choose. After profile-copy, the first argument is the profile that will be copy and the second argument is the name of the new copy"
   echo "rename-profile: renames profile/backup of your choice. first argument is the profile and the second argument is the new name."
   echo "archive-current: archives current profile. The argument after archive-current is the name of the archive"
+  echo "archive: archive a profile of your choice. arg 1 is the profile that is going to be archive and arg 2 is the name of the archive"
   echo "import-archive: imports archive and converts it to a profile. arg 1 is the archive name and arg 2 is going to be the name of the imported profile"
   exit 0
 fi
