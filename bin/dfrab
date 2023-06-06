@@ -20,6 +20,23 @@ if [[ "$1" == 'init' ]] ; then
     exit 1
   fi
 fi
+
+if [[ "$1" == 'help' ]] ; then
+  echo "init: sets up dfrab"
+  echo "link: makes symlink of the dotfile while dfrab manages it"
+  echo "switch-profile: switches to a different profile/backup"
+  echo "create-profile: makes a new profile and switches to it"
+  echo "create-backup: creates a new profile but doesn't switch to it"
+  echo "remove-backup: deletes a backup/profile"
+  echo "unlink: removes link and moves dotfile and makes it like dfrab has never touched it"
+  echo "list-backups: lists backup directories"
+  echo "list-contents: lists the contents in ~/.dfarb/current"
+  echo "what-profile: prints the current profile/backup location"
+  echo "profile-copy: coppies any profile you choose"
+  echo "rename-profile: renames profile/backup of your choice"
+  exit 0
+fi
+
 if [[ ! -f ~/.dfrab/config/inited.conf ]] ; then
   echo "dfrab has not been inited yet. Type \"dfran init\" to init dfrab"
   exit 1
@@ -269,22 +286,6 @@ if [[ "$1" == 'what-profile' ]] ; then
   exit 0
 fi
   
-
-if [[ "$1" == 'help' ]] ; then
-  echo "init: sets up dfrab"
-  echo "link: makes symlink of the dotfile while dfrab manages it"
-  echo "switch-profile: switches to a different profile/backup"
-  echo "create-profile: makes a new profile and switches to it"
-  echo "create-backup: creates a new profile but doesn't switch to it"
-  echo "remove-backup: deletes a backup/profile"
-  echo "unlink: removes link and moves dotfile and makes it like dfrab has never touched it"
-  echo "list-backups: lists backup directories"
-  echo "list-contents: lists the contents in ~/.dfarb/current"
-  echo "what-profile: prints the current profile/backup location"
-  echo "profile-copy: coppies any profile you choose"
-  echo "rename-profile: renames profile/backup of your choice"
-  exit 0
-fi
 
 echo "No arguments have been provided or the arguments are incorrect. Type \"dfrab help\" for command help"
 
