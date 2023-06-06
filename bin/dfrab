@@ -355,6 +355,10 @@ if [[ "$1" == 'import-archive' ]] ; then
   fi
   mkdir -p ~/.dfrab/backups/$3
   tar -xf $2 -C ~/.dfrab/backups/$3
+  if [[ ! -d ~/.dfrab/backups/$3 ]] ; then
+    echo "Failed to import archive"
+    exit 2
+  fi
   echo "Imported $2 and named profile $3"
   exit 0
 fi
