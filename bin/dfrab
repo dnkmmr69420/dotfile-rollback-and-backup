@@ -206,6 +206,46 @@ if [[ "$1" == 'profile-copy' ]] ; then
   fi
 fi
 
+if [[ "$1" == 'rename-profile' ]] ; then
+  if [[ ! -d ~/.dfrab/backups/$2 ]] ; then
+    echo "cannot rename $2 because it doesn't exist"
+    exit 2
+  fi
+  if [[ -d ~/.dfrab/backups/$3 ]] ; then
+    echo "cannot change name to $3 because there is already a directory named that"
+    exit 21
+  fi
+  if [[ "$2" == $CURRENT_DFRAB_PROFILE ]] ; then
+    mv ~/.dfrab/backups/$2 ~/.dfrab/backups/$3
+    if [[ ! -d ~/.dfrab/backups/$3 ]] ; then
+      echo "fatal: failed to rename $2 to $3"
+      if [[ -d ~/.dfrab/backups/$2 ]] ; then
+        echo "but $2 still exists"
+        exit 1
+      fi
+      exit 1
+    fi
+    rm -f ~/.dfrab/current
+    ln -sf ~/.dfrab/backups/$3 ~/.dfrab/current
+    echo "Renamed $2 to $3"
+    exit 0
+  fi
+  if [[ -d ~/.dfrab/backups/$2 ]] ; then
+    mv ~/.dfrab/backups/$2 ~/.dfrab/backups/$3
+    if [[ ! -d ~/.dfrab/backups/$3 ]] ; then
+      echo "fatal: failed to rename $2 to $3"
+      if [[ -d ~/.dfrab/backups/$2 ]] ; then
+        echo "but $2 still exists"
+        exit 1
+      fi
+      exit 1
+    fi
+    echo "Renamed $2 to $3"
+    exit 0
+  fi
+fi
+  
+
 if [[ "$1" == 'list-backups' ]] ; then
   ls ~/.dfrab/backups
   exit 0
@@ -233,6 +273,7 @@ if [[ "$1" == 'help' ]] ; then
   echo "list-backups: lists backup directories"
   echo "list-contents: lists the contents in ~/.dfarb/current"
   echo "what-profile: prints the current profile/backup location"
+  echo "profile-copy: coppies any profile you choose"
   exit 0
 fi
 
