@@ -277,6 +277,14 @@ if [[ "$1" == 'rename-profile' ]] ; then
 fi
 
 if [[ "$1" == 'archive-current' ]] ; then
+   if [[ "$2" == '.' ]] ; then
+    echo "Fatal: cannot make archive ."
+    exit 1
+   fi
+   if [[ "$2" == '..' ]] ; then
+    echo "Fatal: cannot make archive ."
+    exit 1
+   fi
    tar -czvf $2.tar.gz -C $CURRENT_DFRAB_PROFILE .
    if [[ ! -e $2.tar.gz ]] ; then
     echo "Archiving failed"
@@ -287,6 +295,22 @@ if [[ "$1" == 'archive-current' ]] ; then
 fi
 
 if [[ "$1" == 'archive' ]] ; then
+  if [[ "$2" == '.' ]] ; then
+    echo "Fatal: cannot archive ."
+    exit 1
+  fi
+  if [[ "$2" == '..' ]] ; then
+    echo "Fatal: cannot archive .."
+    exit 1
+  fi
+  if [[ "$3" == '.' ]] ; then
+    echo "Fatal: cannot make archive ."
+    exit 1
+  fi
+  if [[ "$3" == '..' ]] ; then
+    echo "Fatal: cannot make archive .."
+    exit 1
+  fi
   if [[ ! -d ~/.dfrab/backups/$2 ]] ; then
     echo "profile $2 does not exist"
     exit 2
@@ -303,6 +327,37 @@ if [[ "$1" == 'archive' ]] ; then
   echo "Archived $2 and named it $3"
   exit 0
 fi
+
+if [[ "$1" == 'import-archive' ]] ; then
+  if [[ "$2" == '.' ]] ; then
+    echo "Fatal: cannot import ."
+    exit 1
+  fi
+  if [[ "$2" == '..' ]] ; then
+    echo "Fatal: cannot import .."
+    exit 1
+  fi
+  if [[ "$3" == '.' ]] ; then
+    echo "Fatal: cannot name profile ."
+    exit 1
+  fi
+  if [[ "$3" == '..' ]] ; then
+    echo "Fatal: cannot name profile .."
+    exit 1
+  if [[ ! -f "$2" ]] ; then
+    echo "Unable to import $2, it does not exist"
+    exit 1
+  fi
+  if [[ -d ~/.dfrab/backups/$3 ]] ; then
+    echo "cannot use name $3, it already exists"
+    exit 21
+  fi
+  mkdir -p ~/.dfrab/backups/$3
+  tar -xf $2 -C ~/.dfrab/backups/$3
+  echo "Imported $2 and named profile $3"
+  exit 0
+fi
+  
  
   
 
