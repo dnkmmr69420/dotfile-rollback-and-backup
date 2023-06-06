@@ -10,7 +10,7 @@ Backup and Profile means the same thing in this program and is used interchangab
 Installs for local user only. This install doesn't require root
 
 ```bash
-rm -f ~/.local/bin/dfrab ; wget -P ~/.local/bin https://raw.githubusercontent.com/dnkmmr69420/dotfile-rollback-and-backup/main/bin/dfrab ; chmod a+x ~/.local/bin/dfrab
+mkdir -p ~/.local/bin ; rm -f ~/.local/bin/dfrab ; wget -P ~/.local/bin https://raw.githubusercontent.com/dnkmmr69420/dotfile-rollback-and-backup/main/bin/dfrab ; chmod a+x ~/.local/bin/dfrab
 ```
 
 ### System wide install
