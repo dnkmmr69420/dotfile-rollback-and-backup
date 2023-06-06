@@ -40,7 +40,7 @@ if [[ "$1" == 'help' ]] ; then
 fi
 
 if [[ "$1" == 'version' ]] ; then
-  echo "dfrab version: 0.1"
+  echo "dfrab version: 0.2"
   exit 0
 fi
 
