@@ -277,7 +277,7 @@ fi
 
 if [[ "$1" == 'archive-current' ]] ; then
    tar -czvf $2.tar.gz -C $CURRENT_DFRAB_PROFILE .
-   if [[ ! -e "$2" ]] ; then
+   if [[ ! -e $2.tar.gz ]] ; then
     echo "Archiving failed"
     exit 2
    fi
@@ -295,7 +295,7 @@ if [[ "$1" == 'archive' ]] ; then
     exit 17
   fi
   tar -czvf $3.tar.gz -C ~/.dfrab/backups/$2 .
-  if [[ ! -f "$3" ]] ; then
+  if [[ ! -f $3.tar.gz ]] ; then
     echo "Archiving failed"
     exit 2
   fi
