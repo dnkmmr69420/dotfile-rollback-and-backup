@@ -38,7 +38,7 @@ if [[ "$1" == 'help' ]] ; then
 fi
 
 if [[ ! -f ~/.dfrab/config/inited.conf ]] ; then
-  echo "dfrab has not been inited yet. Type \"dfran init\" to init dfrab"
+  echo "dfrab has not been inited yet. Type \"dfran init\" to init dfrab. Type \"dfrab help\" for command help with dfrab."
   exit 1
 fi
 
