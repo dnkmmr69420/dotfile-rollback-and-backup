@@ -292,9 +292,9 @@ if [[ "$1" == 'archive' ]] ; then
   fi
   if [[ -e "$3" ]] ; then
     echo "Can't name archive $3, it already exists"
-    exit 2
+    exit 17
   fi
-  tar -czvf $3.tar.gz ~/.dfrab/backups/$2 .
+  tar -czvf $3.tar.gz -C ~/.dfrab/backups/$2 .
   if [[ ! -f "$3" ]] ; then
     echo "Archiving failed"
     exit 2
