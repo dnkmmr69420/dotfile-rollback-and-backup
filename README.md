@@ -46,5 +46,10 @@ That will create ~/.dfrab where there will be backups/profiles you can make copi
 - rename-profile: renames a profile, even your current profile
 - list-backups: lists all of your profiles/backups
 - list-contents: list contents of your current profile
+- archive-current: archives the current profile
+- archive: archives a profile of your choice
+- import-archive: imports an archive into a profile
 - what-profile: prints your current profile
 - help: displays help
+
+Archive commands is useful for transfering dotfiles from computer to computer unless you wanna use git
