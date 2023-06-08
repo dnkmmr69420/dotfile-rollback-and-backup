@@ -53,3 +53,7 @@ That will create ~/.dfrab where there will be backups/profiles you can make copi
 - help: displays help
 
 Archive commands is useful for transfering dotfiles from computer to computer unless you wanna use git
+
+## Known issues
+
+- Steam flatpak won't launch if `~/.config` is linked but will launch when unlinked
